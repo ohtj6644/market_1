@@ -1,27 +1,33 @@
-package com.example.market.member.member;
+package com.example.market.member.entity;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Member {
+import static jakarta.persistence.GenerationType.IDENTITY;
 
+@Entity
+@Getter
+@Setter
+public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private long id;
+    @Column(unique = true)
     private String username;
     private String password;
     private String nickname;
     private String email;
     @CreatedDate
     private LocalDateTime createDate;
-    @LastModifiedBy
+    @LastModifiedDate
     private LocalDateTime modifyDate;
 }
